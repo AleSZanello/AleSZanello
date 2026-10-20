@@ -336,6 +336,11 @@ function section(n, title) {
 
 // ---------- main ----------
 const { metrics, posts, resume } = await siteData()
+// If the site's markup changes, fail the run so the last good README stays up
+// instead of committing an empty proof strip or writing list.
+if (metrics.length < 3 || posts.length < 1) {
+  throw new Error(`Site data looks wrong (${metrics.length} metrics, ${posts.length} posts) — keeping the current README`)
+}
 const years = metrics.find((m) => /yrs/.test(m.label))?.value ?? '6'
 
 let stars = {}
