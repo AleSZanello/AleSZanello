@@ -199,37 +199,40 @@ const LINKS = [
 // ---------- assets ----------
 function header() {
   const H = 236
-  // Mini capability map (same grammar as the home: teal circles = skills,
-  // gold squares = authored projects, edges in percent of one box).
-  const box = { x: 588, y: 52, w: 268, h: 164 }
+  // Mini capability map in the home's grammar (teal circles = skills, edges in
+  // percent of one box): agentic AI at the hub, what it's built from around it,
+  // the two languages it ships in underneath.
+  const box = { x: 592, y: 54, w: 262, h: 156 }
   const P = (px, py) => [box.x + (px / 100) * box.w, box.y + (py / 100) * box.h]
   const nodes = {
-    mcp: { at: P(22, 30), label: 'MCP', kind: 'skill' },
-    lg: { at: P(50, 14), label: 'LangGraph', kind: 'skill' },
-    rag: { at: P(82, 32), label: 'RAG', kind: 'skill' },
-    dart: { at: P(14, 90), label: 'Dart', kind: 'skill' },
-    ts: { at: P(88, 92), label: 'TypeScript', kind: 'skill' },
-    akashi: { at: P(34, 58), label: 'Akashi', kind: 'project' },
-    deep: { at: P(64, 62), label: 'mcp-deep-dive', kind: 'project' },
+    hub: { at: P(50, 44), label: 'Agentic AI', kind: 'hub' },
+    mcp: { at: P(8, 10), label: 'MCP', kind: 'skill' },
+    multi: { at: P(92, 8), label: 'Multi-Agent', kind: 'skill' },
+    rag: { at: P(6, 64), label: 'RAG', kind: 'skill' },
+    wf: { at: P(94, 62), label: 'Workflows', kind: 'skill' },
+    ts: { at: P(26, 92), label: 'TypeScript', kind: 'lang' },
+    py: { at: P(74, 92), label: 'Python', kind: 'lang' },
   }
-  const edges = [['akashi', 'mcp'], ['akashi', 'dart'], ['akashi', 'lg'], ['deep', 'mcp'], ['deep', 'ts'], ['deep', 'rag'], ['lg', 'rag'], ['mcp', 'lg']]
+  const edges = [['hub', 'mcp'], ['hub', 'multi'], ['hub', 'rag'], ['hub', 'wf'], ['ts', 'hub'], ['py', 'hub'],
+    ['ts', 'mcp'], ['py', 'rag'], ['multi', 'wf']]
   const edgeSvg = edges.map(([a, b], i) => {
     const [x1, y1] = nodes[a].at
     const [x2, y2] = nodes[b].at
-    const gold = nodes[a].kind === 'project'
-    return `<path id="e${i}" d="M${x1.toFixed(1)} ${y1.toFixed(1)}L${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="${gold ? '#d4a85366' : '#5eead44d'}" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:${(0.35 + i * 0.07).toFixed(2)}s"/>`
+    const strong = a === 'hub' || b === 'hub'
+    return `<path id="e${i}" d="M${x1.toFixed(1)} ${y1.toFixed(1)}L${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="${strong ? '#5eead466' : '#5eead42e'}" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:${(0.35 + i * 0.06).toFixed(2)}s"/>`
   }).join('\n')
   const nodeSvg = Object.values(nodes).map(({ at: [x, y], label, kind }) => {
-    const mark = kind === 'skill'
-      ? `<circle cx="${x}" cy="${y}" r="5" fill="#5eead422" stroke="${T.signal}" stroke-width="1.5"/>`
-      : `<rect x="${x - 5}" y="${y - 5}" width="10" height="10" rx="1" fill="#d4a85333" stroke="${T.gold}" stroke-width="1.5"/>`
-    const right = x < box.x + box.w * 0.6
-    if (kind === 'project') return `${mark}<text x="${x}" y="${y + 19}" text-anchor="middle" font-family="${MONO}" font-size="10.5" fill="${T.gold}">${esc(label)}</text>`
-    return `${mark}<text x="${right ? x + 10 : x - 10}" y="${y + 4}" text-anchor="${right ? 'start' : 'end'}" font-family="${MONO}" font-size="10.5" fill="${kind === 'project' ? T.gold : T.t2}">${esc(label)}</text>`
+    const r = kind === 'hub' ? 8 : 5
+    // Opaque underlay so edges stop at the ring instead of showing through it.
+    const mark = `<circle cx="${x}" cy="${y}" r="${r}" fill="${T.s1}"/><circle cx="${x}" cy="${y}" r="${r}" fill="${kind === 'hub' ? '#5eead444' : '#5eead422'}" stroke="${T.signal}" stroke-width="${kind === 'hub' ? 2 : 1.5}"/>`
+    if (kind === 'hub') return `${mark}<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${T.signal}" class="breathe"/><text x="${x}" y="${y + 24}" text-anchor="middle" font-family="${MONO}" font-weight="500" font-size="11.5" fill="${T.t1}">${esc(label)}</text>`
+    if (kind === 'lang') return `${mark}<text x="${x}" y="${y + 20}" text-anchor="middle" font-family="${MONO}" font-weight="500" font-size="11" fill="${T.t1}">${esc(label)}</text>`
+    const right = x < box.x + box.w * 0.5
+    return `${mark}<text x="${right ? x + 10 : x - 10}" y="${y + 4}" text-anchor="${right ? 'start' : 'end'}" font-family="${MONO}" font-size="10.5" fill="${kind === 'lang' ? T.t1 : T.t2}">${esc(label)}</text>`
   }).join('\n')
-  // One signal pulse travelling the authored edge, like the home's live map.
-  const pulse = `<circle r="2.5" fill="${T.signal}"><animateMotion dur="3.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#e0"/></animateMotion></circle>
-<circle r="2.5" fill="${T.gold}"><animateMotion dur="4.1s" begin="1.4s" repeatCount="indefinite"><mpath href="#e4"/></animateMotion></circle>`
+  // Signal pulses from each language into the hub, like the home's live map.
+  const pulse = `<circle r="2.5" fill="${T.signal}"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#e4"/></animateMotion></circle>
+<circle r="2.5" fill="${T.signal}"><animateMotion dur="2.8s" begin="1.4s" repeatCount="indefinite"><mpath href="#e5"/></animateMotion></circle>`
 
   const status = `<g transform="translate(${W - 104} 15)">
 <circle cx="4" cy="4" r="4" fill="${T.ok}"/><circle cx="4" cy="4" r="4" fill="${T.ok}" class="breathe"/>

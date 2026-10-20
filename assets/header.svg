@@ -19,24 +19,25 @@
 <text x="16" y="8" class="lbl" fill="#a3a9b6">available</text></g>
 <text x="14" y="20" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" font-weight="500" fill="#e6e8ec" letter-spacing="-.02em">azanello<tspan fill="#5eead4">.</tspan>com <tspan fill="#8b919d" font-size="11">/ github</tspan></text>
 <line x1="568" y1="31" x2="568" y2="235" stroke="#232834"/>
-<text x="588" y="48" class="lbl">capability map</text>
-<path id="e0" d="M679.1 147.1L647.0 101.2" stroke="#d4a85366" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.35s"/>
-<path id="e1" d="M679.1 147.1L625.5 199.6" stroke="#d4a85366" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.42s"/>
-<path id="e2" d="M679.1 147.1L722.0 75.0" stroke="#d4a85366" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.49s"/>
-<path id="e3" d="M759.5 153.7L647.0 101.2" stroke="#d4a85366" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.56s"/>
-<path id="e4" d="M759.5 153.7L823.8 202.9" stroke="#d4a85366" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.63s"/>
-<path id="e5" d="M759.5 153.7L807.8 104.5" stroke="#d4a85366" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.70s"/>
-<path id="e6" d="M722.0 75.0L807.8 104.5" stroke="#5eead44d" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.77s"/>
-<path id="e7" d="M647.0 101.2L722.0 75.0" stroke="#5eead44d" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.84s"/>
-<circle cx="646.96" cy="101.19999999999999" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="656.96" y="105.19999999999999" text-anchor="start" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">MCP</text>
-<circle cx="722" cy="74.96000000000001" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="732" y="78.96000000000001" text-anchor="start" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">LangGraph</text>
-<circle cx="807.76" cy="104.48" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="797.76" y="108.48" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">RAG</text>
-<circle cx="625.52" cy="199.6" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="635.52" y="203.6" text-anchor="start" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">Dart</text>
-<circle cx="823.84" cy="202.88" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="813.84" y="206.88" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">TypeScript</text>
-<rect x="674.12" y="142.12" width="10" height="10" rx="1" fill="#d4a85333" stroke="#d4a853" stroke-width="1.5"/><text x="679.12" y="166.12" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#d4a853">Akashi</text>
-<rect x="754.52" y="148.68" width="10" height="10" rx="1" fill="#d4a85333" stroke="#d4a853" stroke-width="1.5"/><text x="759.52" y="172.68" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#d4a853">mcp-deep-dive</text>
-<circle r="2.5" fill="#5eead4"><animateMotion dur="3.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#e0"/></animateMotion></circle>
-<circle r="2.5" fill="#d4a853"><animateMotion dur="4.1s" begin="1.4s" repeatCount="indefinite"><mpath href="#e4"/></animateMotion></circle>
+<text x="592" y="50" class="lbl">capability map</text>
+<path id="e0" d="M723.0 122.6L613.0 69.6" stroke="#5eead466" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.35s"/>
+<path id="e1" d="M723.0 122.6L833.0 66.5" stroke="#5eead466" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.41s"/>
+<path id="e2" d="M723.0 122.6L607.7 153.8" stroke="#5eead466" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.47s"/>
+<path id="e3" d="M723.0 122.6L838.3 150.7" stroke="#5eead466" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.53s"/>
+<path id="e4" d="M660.1 197.5L723.0 122.6" stroke="#5eead466" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.59s"/>
+<path id="e5" d="M785.9 197.5L723.0 122.6" stroke="#5eead466" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.65s"/>
+<path id="e6" d="M660.1 197.5L613.0 69.6" stroke="#5eead42e" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.71s"/>
+<path id="e7" d="M785.9 197.5L607.7 153.8" stroke="#5eead42e" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.77s"/>
+<path id="e8" d="M833.0 66.5L838.3 150.7" stroke="#5eead42e" stroke-width="1" fill="none" pathLength="1" class="draw" style="--d:0.83s"/>
+<circle cx="723" cy="122.64" r="8" fill="#0e1015"/><circle cx="723" cy="122.64" r="8" fill="#5eead444" stroke="#5eead4" stroke-width="2"/><circle cx="723" cy="122.64" r="8" fill="none" stroke="#5eead4" class="breathe"/><text x="723" y="146.64" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-weight="500" font-size="11.5" fill="#e6e8ec">Agentic AI</text>
+<circle cx="612.96" cy="69.6" r="5" fill="#0e1015"/><circle cx="612.96" cy="69.6" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="622.96" y="73.6" text-anchor="start" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">MCP</text>
+<circle cx="833.04" cy="66.48" r="5" fill="#0e1015"/><circle cx="833.04" cy="66.48" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="823.04" y="70.48" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">Multi-Agent</text>
+<circle cx="607.72" cy="153.84" r="5" fill="#0e1015"/><circle cx="607.72" cy="153.84" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="617.72" y="157.84" text-anchor="start" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">RAG</text>
+<circle cx="838.28" cy="150.72" r="5" fill="#0e1015"/><circle cx="838.28" cy="150.72" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="828.28" y="154.72" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10.5" fill="#a3a9b6">Workflows</text>
+<circle cx="660.12" cy="197.52" r="5" fill="#0e1015"/><circle cx="660.12" cy="197.52" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="660.12" y="217.52" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-weight="500" font-size="11" fill="#e6e8ec">TypeScript</text>
+<circle cx="785.88" cy="197.52" r="5" fill="#0e1015"/><circle cx="785.88" cy="197.52" r="5" fill="#5eead422" stroke="#5eead4" stroke-width="1.5"/><text x="785.88" y="217.52" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-weight="500" font-size="11" fill="#e6e8ec">Python</text>
+<circle r="2.5" fill="#5eead4"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#e4"/></animateMotion></circle>
+<circle r="2.5" fill="#5eead4"><animateMotion dur="2.8s" begin="1.4s" repeatCount="indefinite"><mpath href="#e5"/></animateMotion></circle>
 <text x="27" y="96" font-family="'Inter Tight',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="40" letter-spacing="-.025em" fill="#e6e8ec">Ale Zanello</text>
 <text x="29" y="122" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace" font-weight="500" font-size="11.5" letter-spacing=".08em" fill="#5eead4">AGENTIC AI &amp; GENAI ENGINEER</text>
 <text x="28" y="164" font-family="'Inter Tight',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="18" fill="#e6e8ec">6+ years shipping software.</text>
