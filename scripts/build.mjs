@@ -199,7 +199,6 @@ const LINKS = [
 // ---------- assets ----------
 function header() {
   const H = 236
-  const photo = readFileSync(join(ROOT, 'photo.jpg')).toString('base64')
   // Mini capability map (same grammar as the home: teal circles = skills,
   // gold squares = authored projects, edges in percent of one box).
   const box = { x: 588, y: 52, w: 268, h: 164 }
@@ -243,11 +242,8 @@ function header() {
 ${edgeSvg}
 ${nodeSvg}
 ${pulse}
-<defs><clipPath id="ph"><rect x="28" y="58" width="64" height="64" rx="6"/></clipPath></defs>
-<image href="data:image/jpeg;base64,${photo}" x="28" y="58" width="64" height="64" clip-path="url(#ph)" preserveAspectRatio="xMidYMid slice"/>
-<rect x="28" y="58" width="64" height="64" rx="6" fill="none" stroke="${T.line}"/>
-<text x="110" y="88" font-family="${SANS}" font-weight="700" font-size="34" letter-spacing="-.025em" fill="${T.t1}">${esc(IDENTITY.name)}</text>
-<text x="111" y="114" font-family="${MONO}" font-weight="500" font-size="11.5" letter-spacing=".08em" fill="${T.signal}">${esc(IDENTITY.role.toUpperCase())}</text>
+<text x="27" y="96" font-family="${SANS}" font-weight="700" font-size="40" letter-spacing="-.025em" fill="${T.t1}">${esc(IDENTITY.name)}</text>
+<text x="29" y="122" font-family="${MONO}" font-weight="500" font-size="11.5" letter-spacing=".08em" fill="${T.signal}">${esc(IDENTITY.role.toUpperCase())}</text>
 <text x="28" y="164" font-family="${SANS}" font-size="18" fill="${T.t1}">${'{{YEARS}}'}+ years shipping software.</text>
 <text x="28" y="188" font-family="${SANS}" font-size="18" fill="${T.t2}">Now: production multi-agent systems.</text>
 <circle cx="32" cy="211" r="3" fill="${T.ok}"/>
@@ -317,30 +313,6 @@ ${chipRow(130, y, items, W - 14, { color: T.t1 })}`
   })
 }
 
-function heatmap(cal) {
-  const cell = 11
-  const gap = 3
-  const weeks = cal.weeks.slice(-53)
-  const gridW = weeks.length * (cell + gap)
-  const x0 = Math.round((W - gridW) / 2)
-  const H = 46 + 7 * (cell + gap) + 40
-  const ramp = ['#14171e', '#134e4a', '#0f766e', '#14b8a6', T.signal]
-  const max = Math.max(1, ...weeks.flatMap((w) => w.contributionDays.map((d) => d.contributionCount)))
-  const level = (n) => (n === 0 ? 0 : Math.min(4, Math.ceil((n / max) * 4 * 1.6)))
-  const cells = weeks.map((w, wi) => w.contributionDays.map((d) => {
-    const day = new Date(d.date + 'T00:00:00Z').getUTCDay()
-    return `<rect x="${x0 + wi * (cell + gap)}" y="${46 + day * (cell + gap)}" width="${cell}" height="${cell}" rx="2" fill="${ramp[level(d.contributionCount)]}"/>`
-  }).join('')).join('\n')
-  const legendY = H - 22
-  const legend = `<text x="${W - 22 - 5 * (cell + gap) - 40}" y="${legendY + 9}" class="lbl" text-anchor="end">less</text>
-${ramp.map((c, i) => `<rect x="${W - 22 - 5 * (cell + gap) - 32 + i * (cell + gap)}" y="${legendY}" width="${cell}" height="${cell}" rx="2" fill="${c}"/>`).join('')}
-<text x="${W - 22 - 26}" y="${legendY + 9}" class="lbl">more</text>`
-  const meta = `<text x="${W - 14}" y="19" text-anchor="end" class="lbl"><tspan fill="${T.t1}">${cal.totalContributions.toLocaleString('en-US')}</tspan> contributions · last 12 months</text>`
-  return svg(W, H, `${panel({ w: W - 1, h: H - 1, rail: ['07', 'activity'], meta })}\n${cells}\n${legend}`, {
-    fonts: ['mono500'],
-    title: `${cal.totalContributions} GitHub contributions in the last 12 months`,
-  })
-}
 
 function button(l) {
   const size = 12
@@ -364,16 +336,13 @@ const { metrics, posts, resume } = await siteData()
 const years = metrics.find((m) => /yrs/.test(m.label))?.value ?? '6'
 
 let stars = {}
-let calendar = null
 try {
   const repoFields = CARDS.concat([{ repo: AKASHI.repo }]).map((c, i) =>
     `r${i}: repository(owner: "${c.owner ?? LOGIN}", name: "${c.repo}") { stargazerCount }`).join('\n')
-  const data = await github(`query($login: String!) {
-    user(login: $login) { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } } } }
+  const data = await github(`query {
     ${repoFields}
-  }`, { login: LOGIN })
+  }`)
   if (data) {
-    calendar = data.user.contributionsCollection.contributionCalendar
     CARDS.concat([{ repo: AKASHI.repo }]).forEach((c, i) => { stars[c.repo] = data[`r${i}`]?.stargazerCount ?? 0 })
   }
 } catch (e) {
@@ -389,7 +358,6 @@ writeFileSync(join(OUT, 'proof.svg'), proof(metrics))
 writeFileSync(join(OUT, 'spotlight-akashi.svg'), spotlight(stars[AKASHI.repo]))
 CARDS.forEach((c, i) => writeFileSync(join(OUT, `card-${c.repo}.svg`), card(c, stars[c.repo], i)))
 writeFileSync(join(OUT, 'stack.svg'), stack())
-if (calendar) writeFileSync(join(OUT, 'activity.svg'), heatmap(calendar))
 LINKS.forEach((l) => writeFileSync(join(OUT, `btn-${l.id}.svg`), button(l)))
 const SECTIONS = [['02', 'featured work'], ['06', 'writing']]
 SECTIONS.forEach(([n, t]) => writeFileSync(join(OUT, `section-${n}.svg`), section(n, t)))
@@ -424,9 +392,7 @@ ${posts.slice(0, 5).map((p) => `- [${p.title}](${p.link})`).join('\n')}
 - [All ${posts.length} posts →](${SITE}/blog)
 <!-- posts:end -->
 
-${calendar ? img('activity.svg', `${calendar.totalContributions} GitHub contributions in the last 12 months`, ' width="100%"') : ''}
-
 <sub>Built from live data on <a href="${SITE}">azanello.com</a> · refreshed daily · ${resume.certificates?.length ?? 0} certifications on <a href="https://www.credly.com/users/azanello">Credly</a></sub>
 `
 writeFileSync(join(ROOT, 'README.md'), readme)
-console.log(`built ${metrics.length} metrics, ${posts.length} posts, calendar: ${!!calendar}`)
+console.log(`built ${metrics.length} metrics, ${posts.length} posts, stars: ${Object.keys(stars).length}`)

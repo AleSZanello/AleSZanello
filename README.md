@@ -44,6 +44,4 @@
 - [All 22 posts →](https://azanello.com/blog)
 <!-- posts:end -->
 
-<img src="assets/activity.svg" alt="6578 GitHub contributions in the last 12 months" width="100%">
-
 <sub>Built from live data on <a href="https://azanello.com">azanello.com</a> · refreshed daily · 22 certifications on <a href="https://www.credly.com/users/azanello">Credly</a></sub>
