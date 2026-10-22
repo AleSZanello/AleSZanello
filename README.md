@@ -10,7 +10,7 @@
 <a href="https://www.upwork.com/freelancers/~01851ff7d016140d3d"><img src="assets/btn-upwork.svg" alt="Upwork" height="34"></a>
 </p>
 
-<a href="https://azanello.com/#proof"><img src="assets/proof.svg" alt="Proof: 6+ yrs shipping, 13 Akashi pkgs on pub.dev · 160/160 core, 16 IBM GenAI Eng. PC courses, 3 credentials · 19 courses, 5,783 contributions · 2026" width="100%"></a>
+<a href="https://azanello.com/#proof"><img src="assets/proof.svg" alt="Proof: 6+ yrs shipping, 13 Akashi pkgs on pub.dev · 160/160 core, 16 IBM GenAI Eng. PC courses, 3 credentials · 19 courses, 5,827 contributions · 2026" width="100%"></a>
 
 <img src="assets/section-02.svg" alt="Featured work" width="100%">
 
