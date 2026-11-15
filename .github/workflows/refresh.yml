@@ -2,21 +2,36 @@ name: Refresh profile
 on:
   schedule: [{ cron: '0 9 * * *' }]
   workflow_dispatch:
-  push: { branches: [main], paths: ['scripts/**'] }
-permissions: { contents: write }
+  push: { branches: [main], paths: ['scripts/**', 'package*.json', '.github/workflows/**'] }
+
+# One refresh at a time; a newer run supersedes a queued one.
+concurrency:
+  group: refresh-profile
+  cancel-in-progress: false
+
+permissions: {}
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: { contents: write }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: npm }
-      - run: npm ci
+      # Actions pinned by commit SHA (tags can be moved); Dependabot keeps them current.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: npm }
+      - run: npm ci --ignore-scripts
       - run: npm run build
         env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' }
       - name: Commit if changed
         run: |
+          git add README.md assets
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets
-          git diff --cached --quiet || git commit -m "chore: refresh profile from azanello.com" && git push
+          git commit -m "chore: refresh profile from azanello.com"
+          git push

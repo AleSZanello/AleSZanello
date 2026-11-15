@@ -1,0 +1,7 @@
+version: 2
+updates:
+  # Keeps the SHA-pinned actions in refresh.yml up to date (opens a PR, never merges).
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }
+    cooldown: { default-days: 7 }
