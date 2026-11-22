@@ -9,7 +9,7 @@
 <a href="https://www.linkedin.com/in/alejandrozanello/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-linkedin-dark.svg"><img src="assets/btn-linkedin.svg" alt="LinkedIn" height="40"></picture></a>
 </p>
 
-<a href="https://azanello.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/results-dark.svg"><img src="assets/results.svg" alt="Results: 6+ years shipping software, 13 Akashi packages on pub.dev · 160/160 pub points, 16 courses · IBM GenAI Engineering, 3 verified credentials · 19 courses, 7,363 GitHub contributions in 2026" width="100%"></picture></a>
+<a href="https://azanello.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/results-dark.svg"><img src="assets/results.svg" alt="Results: 6+ years shipping software, 13 Akashi packages on pub.dev · 160/160 pub points, 16 courses · IBM GenAI Engineering, 3 verified credentials · 19 courses, 7,367 GitHub contributions in 2026" width="100%"></picture></a>
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/section-work-dark.svg"><img src="assets/section-work.svg" alt="Open source — What I shipped" width="100%"></picture>
 
